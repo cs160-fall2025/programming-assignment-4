@@ -1,217 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Programming Assignment 3: Building with React</title>
+    <title>Programming Assignment 4: Speedy Smarts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-
-    <script>
-      hljs.highlightAll();
-    </script>
-
-    <script>
-      const createHeader = () => {
-        const headerBg = document.getElementById("header-bg");
-        headerBg.innerHTML = "";
-
-        // https://materialui.co/colors
-        const colors = [
-          "#FFEBEE",
-          "#FCE4EC",
-          "#F3E5F5",
-          "#EDE7F6",
-          "#E8EAF6",
-          "#E3F2FD",
-          "#E1F5FE",
-          "#E0F7FA",
-          "#E0F2F1",
-          "#E8F5E9",
-          "#F1F8E9",
-          "#F9FBE7",
-          "#FFFDE7",
-          "#FFF8E1",
-          "#FFF3E0",
-          "#FBE9E7",
-          "#EFEBE9",
-          "#FAFAFA",
-          "#ECEFF1",
-        ];
-
-        for (let i = 0; i < 6; i++) {
-          const pillContainer = document.createElement("div");
-          pillContainer.classList.add("pill-container");
-          headerBg.appendChild(pillContainer);
-
-          const totalWidth = headerBg.offsetWidth;
-
-          const initialOffset = -Math.random() * 100;
-          pillContainer.style.transform = `translateX(${initialOffset}px)`;
-          let pillsWidth = initialOffset;
-          let iters = 0;
-          while (pillsWidth < totalWidth + 300 && iters < 100) {
-            const pill = document.createElement("div");
-            pill.classList.add("pill");
-            pill.style.width = `${Math.random() * 100 + 20}px`;
-            pill.style.backgroundColor =
-              colors[Math.floor(Math.random() * colors.length)];
-            pillContainer.appendChild(pill);
-
-            pillsWidth += pill.offsetWidth;
-
-            iters++;
-          }
-        }
-      };
-
-      const debounce = (func, wait, immediate) => {
-        let timeout;
-        return function () {
-          const context = this,
-            args = arguments;
-          const later = function () {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-          };
-          const callNow = immediate && !timeout;
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-          if (callNow) func.apply(context, args);
-        };
-      };
-
-      const createHeaderDebounced = debounce(createHeader, 500);
-
-      window.addEventListener("DOMContentLoaded", createHeader);
-      window.addEventListener("resize", createHeaderDebounced);
-    </script>
+    <meta charset="UTF-8" />
   </head>
 
   <body>
-    <header>
-      <div id="header-bg" class="header-bg" aria-hidden="true"></div>
-      <h1>
-        <span class="pre-header">CS 160/260A Programming Assignment 3</span
-        ><br />Building with React
-      </h1>
-    </header>
     <main>
-      <p>
-        In this programming assignment, you’ll edit a React project, adding
-        functionality and making it beautiful!
-      </p>
-
-      <p>Let’s dive in!</p>
+      <h1>Programming assignment 4: Speedy smarts</h1>
 
       <h2>Contents</h2>
 
       <ul>
         <li>
-          <a href="#Collaboration">Collaboration policy</a>
-        </li>
-        <li>
-          <a href="#Starter_code">Starter code</a>
+          <a href="#Objectives">Objectives</a>
         </li>
         <li>
           <a href="#Submission">Submission</a>
         </li>
         <li>
-          <a href="#Development_environment">Development environment</a>
+          <a href="#Starter_code">Starter code</a>
         </li>
         <li>
-          <a href="#Grading">Grading</a>
+          <a href="#Collaboration">Collaboration policy</a>
+        </li>
+        <li>
+          <a href="#Autograder">Autograder</a>
         </li>
 
         <li>
-          <a href="#Part_0">Part 0 · Getting situated</a>
+          <a href="#Task_1">Task 1 · Email subject generator (4 points)</a>
         </li>
         <li>
-          <a href="#Part_1">Part 1 · Reusable components</a>
+          <a href="#Task_2">Task 2 · Planet finder (4 points)</a>
         </li>
         <li>
-          <a href="#Part_2">Part 2 · Adding interactivity</a>
+          <a href="#Task_3">Task 3 · Shopping list images (4 points)</a>
         </li>
         <li>
-          <a href="#Part_3">Part 3 · Luggage planning</a>
+          <a href="#Task_4">Task 4 · Board game inventory (4 points)</a>
         </li>
         <li>
-          <a href="#Part_4">Part 4 · Adding a new page</a>
-        </li>
-        <li>
-          <a href="#Part_5">Part 5 · Make it your own</a>
+          <a href="#Report">Report</a>
         </li>
       </ul>
 
-      <h2 id="Collaboration">Collaboration policy</h2>
+      <h2 id="Objectives">Objectives</h2>
+
+      <p>In this assignment, you will:</p>
+
+      <ul>
+        <li>Implement “intelligent UI” features in existing applications</li>
+        <li>
+          Prompt text completion, text-to-image, and vision language models
+        </li>
+        <li>
+          Ponder on how large AI models can affect your UI prototyping process
+        </li>
+      </ul>
+
+      <h2 id="Submission">Submission</h2>
 
       <p>
-        Programming assignments should be your own. You are not allowed to copy
-        other students code, or copy/modify large chunks of code or entire
-        projects found online (e.g. on GitHub).
-      </p>
-
-      <p>
-        You are allowed to consult online resources, e.g. Stack Overflow, to get
-        answers to specific implementation questions.
-      </p>
-
-      <p>
-        LLM-based tools like ChatGPT and GitHub Copilot are helpful and
-        increasingly common in industry, and
-        <strong>you may use them</strong> to help you complete assignments, with
-        the following caveats:
+        You will modify the starter code provided to you with the assignment,
+        then submit your code as a zip file. You'll likely want to edit the
+        starter code in spots where the code says "YOUR CODE HERE".
       </p>
 
       <ul>
-        <li>
-          You should stick to using AI for line- or function-level edits; do
-          <strong>not</strong> paste the entire chunks of the assignment
-          description into ChatGPT (it’s pretty obvious when you do this).
-          Programming assignments are not quite like real-world software
-          development, because we often provide detail in the specification that
-          would not normally be written out for you in a real-world project. If
-          you use these tools, you should practice the skill of communicating
-          with the tools rather than letting the assignment document do this for
-          you.
-        </li>
-        <li>
-          We generally describe what we want you to learn from a particular
-          exercise. Work through each task with the intention of
-          <strong>practicing the skills we mention</strong>; if AI helped you
-          get unstuck, do your best to come away with an understanding of the
-          concepts targeted by the assignment.
-        </li>
-        <li>
-          When we ask you to think about the design and aesthetics of your
-          application,
-          <strong>we’re looking for <em>your</em> creative spark</strong>. AI
-          can be great for helping you find the right CSS rules to style an
-          element, but you should be making your own high-level decisions.
-        </li>
-        <li>
-          The goal of these assignments is to develop your skills to work
-          independently on code implementations. LLMs can be part of this
-          process, but when you prompt AI tools to help you write assignment
-          code,
-          <strong>you should not share the exact prompts you used</strong> with
-          other students. This has a similar effect as sharing code, since it
-          prevents other students from developing their own skills with the
-          tools they are using. Of course, it's always okay to exchange
-          high-level advice with your peers.
-        </li>
+        <li>submission.zip</li>
+        <ul>
+          <li>src/</li>
+          <ul>
+            <li>(...)</li>
+          </ul>
+          <li>public/</li>
+          <ul>
+            <li>(...)</li>
+          </ul>
+          <li>index.html</li>
+          <li>package.json and package-lock.json</li>
+          <ul>
+            <li>
+              (optional. If you install new libraries, you’ll need to copy these
+              files into your submission folder from outside the
+              <code>code</code> folder.)
+            </li>
+          </ul>
+        </ul>
       </ul>
+
+      <p>
+        Make sure to zip up the files directly at the top level of the zip
+        archive, rather than placing them in some subdirectory.
+      </p>
 
       <h2 id="Starter_code">Starter code</h2>
 
@@ -229,1086 +118,1083 @@
         you’ll be on the hook for the plagiarism too!
       </p>
 
-      <h2 id="Submission">Submission</h2>
+      <h2 id="Autograder">Autograder</h2>
 
       <p>
-        You will modify the starter code provided to you with the assignment,
-        then submit your code as a zip file to Gradescope containing your code
-        submission. Gradescope will give you a link to an uploaded build of your
-        submission;
-        <strong>you should verify that this works as expected</strong>. This
-        assignment will be manually graded by course staff after the submission
-        deadline.
+        There’s no autograder for this assignment. When you upload to
+        Gradescope, some tests will run (<strong>all worth zero points</strong>)
+        as a basic check, but they will mostly <em>not</em> check for
+        correctness of your approach (since you have some leeway in exactly how
+        your interface responds to user input, and LLM outputs are not always
+        the same).
       </p>
 
-      <p>Submission file structure:</p>
-
-      <ul>
-        <li>submission.zip</li>
-        <ul>
-          <li>src/</li>
-          <ul>
-            <li>(...)</li>
-          </ul>
-          <li>public/</li>
-          <ul>
-            <li>(...)</li>
-          </ul>
-          <li>index.html</li>
-          <li>package.json and package-lock.json</li>
-          <ul>
-            <!-- TODO: check this works -->
-            <li>
-              (optional. If you install new libraries, you’ll need to copy these
-              files into your submission folder from outside the
-              <code>code</code> folder.)
-            </li>
-          </ul>
-        </ul>
-      </ul>
-
-      <h2 id="Development_environment">Development environment</h2>
-
-      <p>
-        Read the assignment's README.md for instructions on how to run the local
-        server; if you've done it right, the URL of this specification document
-        you're reading should be http://localhost:6160/specification/index.html.
-      </p>
-
-      <p>
-        You'll also want to open the <code>code</code> directory of the
-        repository in a text editor. We like
-        <a href="https://code.visualstudio.com/">VS Code</a>.
-      </p>
-
-      <h2 id="Grading">Grading</h2>
-
-      <p>
-        There are <strong>no autograded portions</strong> for this assignment;
-        course staff will manually grade your work by using your Web interface.
-      </p>
-
-      <p>
-        You should go through the assignment’s requirements checklist and make
-        sure you have completed everything asked of you before submitting.
-      </p>
-
-      <p>
-        Because the assignment is manually graded, it is important to have the
-        right submission activated in Gradescope when the deadline passes. We
-        will only grade your assignment once!
-      </p>
-
-      <!-- react dev tools -->
-
-      <!-- can I use libraries? -->
-
-      <section id="Part_0">
-        <h2>Part 0 · Getting situated</h2>
-
+      <section id="Task_1">
+        <h2>Task 1 · Email subject generator (4 points)</h2>
         <p>
-          Hello! This project will be different than your other programming
-          assignments. We’ve provided a skeleton React application, which you’ll
-          modify over the next few parts of the assignment. Rather than building
-          to an exact, autogradable specification, you’ll design and construct
-          your own interactions that implement the requested requirements.
+          <em>
+            Skills: Integrating LLM APIs, prompt design, using text completion
+            models
+          </em>
+          <br />
+          <em>Task 1 expected cost: 5 credits</em>
+        </p>
+        <p>
+          <strong
+            >This task is accompanied by a full
+            <a href="images/task-1-walkthrough.mp4" target="_blank"
+              >walkthrough video</a
+            >
+            (<a href="images/task-1-walkthrough.srt" target="_blank"
+              >subtitles</a
+            >), which will guide you through completing the task, to set you up
+            for success in future tasks</strong
+          >. This walkthrough was made for a previous semester, so you should
+          note the following changes:
         </p>
 
-        <p>
-          We’ll build a <strong>travel planning application</strong>, which
-          helps users plan their luggage for a flight, ensuring they stay within
-          airline baggage weight limits.
-        </p>
-
-        <p>
-          You’ll find the
-          <a
-            href="https://react.dev/learn/describing-the-ui"
-            target="_blank"
-            rel="noopener noreferrer"
-            >React documentation</a
-          >
-          to be very helpful here! Be cautious about using LLMs in this
-          assignment, since asking them to generate code can make it harder for
-          you to understand the concepts that this homework is designed to
-          teach. You’ll want to make sure you’re well-prepared for your final
-          project!
-        </p>
-
-        <p>
-          It’s okay if you’re finding that you don’t already know, before
-          starting, everything you need to know to complete the assignment.
-          Practice is the best way to become proficient!
-        </p>
-
-        <h3>Developing the application</h3>
-
-        <p>
-          If you’re running the server for this homework correctly (with
-          <code>npm start</code>), you’ll be running a
-          <a href="https://vite.dev/" target="_blank" rel="noopener noreferrer"
-            >Vite server</a
-          >
-          locally on your computer. Vite automatically reloads your code as you
-          save changes to the code files, which is great for fast prototyping!
-          This can (rarely) cause the page to misbehave, so you may want to
-          reload every now and then to make sure your code works as expected.
-        </p>
-
-        <p>
-          You’ll be able to view your project, throughout the assignment, at
-          <a
-            href="http://localhost:6160/code/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >http://localhost:6160/code/</a
-          >. When you submit your work, the Gradescope submission will
-          <a
-            href="https://vite.dev/guide/build"
-            target="_blank"
-            rel="noopener noreferrer"
-            >build a static version</a
-          >
-          of your application, which is what course staff will see when they
-          grade your submission. This static build can run even without a
-          dynamic Web server like the Vite server you’re using to develop your
-          code; it’s what you would upload if, say, you wanted your React
-          application to work on a static site host like GitHub Pages.
-        </p>
-
-        <h3>React developer tools</h3>
-
-        <p>
-          Because React encourages you to break your page up into a component
-          hierarchy (similar to the HTML document tree), React provides
-          <a
-            href="https://react.dev/learn/react-developer-tools"
-            target="_blank"
-            rel="noopener noreferrer"
-            >custom browser extensions</a
-          >
-          that augment your browser’s built-in developer tools. We recommend
-          trying them out!
-        </p>
-
-        <h3>Making a change</h3>
-
-        <p>Let’s try making a change to the code!</p>
-
-        <p>
-          <code>src/App.jsx</code> contains the entrypoint React component; it
-          includes a Sidebar component and a main content area. The main content
-          area renders only one of the components in the
-          <code>pages</code> folder, depending on what page the user is
-          currently visiting.
-        </p>
-
-        <p>
-          We also have an <code>index.css</code> file (imported in
-          <code>App.jsx</code>) that we’re using to store all of our
-          application’s CSS. Opinions vary on exactly how to manage CSS code in
-          a large project, but ours is small enough that it shouldn’t get too
-          confusing to put all of our CSS in this file.
-        </p>
-
-        <p>
-          <strong>Try changing the background color of the sidebar</strong> in
-          the <code>index.css</code> file. Watch the page update in real time
-          (thanks to Vite’s auto reload)!
-        </p>
-
-        <p>
-          Then, head into <code>Sidebar.jsx</code> (which is a
-          <a
-            href="https://react.dev/learn/importing-and-exporting-components"
-            target="_blank"
-            rel="noopener noreferrer"
-            >component</a
-          >
-          used by <code>App.jsx</code>, our entrypoint) and
-          <strong>
-            add something at the top of the sidebar, above the navigation
-            links</strong
-          >. Maybe you’ll add a logo or a title for the app.
-        </p>
-
-        <p>
-          You’ll notice that the sidebar component looks a lot like HTML code.
-          We’re writing
-          <a
-            href="https://react.dev/learn/writing-markup-with-jsx"
-            target="_blank"
-            rel="noopener noreferrer"
-            >JSX</a
-          >
-          to describe our UI. There are a few differences from HTML, but it’s
-          very similar here! We’ll want to add something within the
-          <code>div</code> for the sidebar, but outside the <code>ul</code> tag.
-        </p>
-
-        <!-- <h3>Resources</h3>
         <ul>
           <li>
-            <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML"
-              >Structuring the web with HTML - Learn web development | MDN</a
-            >
+            The assignment now uses <strong>React</strong>, so you’ll need to
+            use React-y ways of listening to user input and updating the page.
           </li>
-        </ul> -->
+          <li>
+            I recommend using GPT-5-mini for this task, since it’s a newer (and
+            probably better) model. Consider setting the 'reasoning effort' to
+            'minimal' or 'low' to get faster responses.
+          </li>
+        </ul>
+
+        <h3>Introduction</h3>
+        <p>
+          In the task 1 folder, you'll find a simple email composition
+          interface, with a spot to write the body and the subject line of an
+          email.
+        </p>
+        <div class="image-container">
+          <img
+            src="images/email.png"
+            alt="A user interface for composing an email,
+          with a body and subject field. The subject field includes a 'Suggest' button to its right."
+          />
+        </div>
+        <p>
+          The subject line has a “Suggest” button, which will automatically
+          suggest a subject line for the email being written.
+        </p>
+        <p>
+          Well, it's <em>supposed</em> to, anyway. Right now, the “Suggest”
+          button doesn't do anything. We'll need to generate a reasonable
+          subject line using AI when the user clicks the button. Fortunately,
+          prototyping with AI is easier than it has ever been, now that we can
+          instruct AI models with natural language.
+        </p>
+        <h3>Example</h3>
+        <p>
+          We've provided some example emails in the task folder that you can use
+          in your testing. Here's one example:
+        </p>
+        <blockquote>
+          <p>Hello Mr. President,</p>
+          <p>
+            It was great to meet you at the gala last week. Attached, you will
+            find my proposed federal legislation, which, if I recall our
+            conversation accurately, you described as "not entirely unhinged"
+            and "admittedly unique."
+          </p>
+          <p>
+            As we discussed, successful passage of the legislation would
+            completely ban homework in schools and promise universal free ice
+            cream on Fridays. The attached PDF should answer any remaining
+            questions for your staff.
+          </p>
+          <p>Thank you,</p>
+          <p>Sen. Fipp</p>
+        </blockquote>
+        <p>
+          You can try using <a href="https://chatgpt.com/">ChatGPT</a>, an
+          interface connected to a <strong>large language model (LLM)</strong>,
+          to generate a subject header for this kind of email, and you'll
+          probably get a reasonable response:
+        </p>
+        <div class="image-container">
+          <img
+            src="images/chat-example.png"
+            alt="A screenshot of the ChatGPT interface, showing a generated subject line for the email."
+          />
+        </div>
+        <p>
+          We're not limited to talking to these LLMs directly through a chat
+          interface, though. We can also use AI models as components of a larger
+          system. OpenAI provides an <strong>API</strong> that allows code to
+          send text to their LLMs and receive responses. By writing code that
+          incorporates LLM responses into our software, we can make our software
+          smarter without having to train or find specialized AI models.
+        </p>
+        <h3>Using <span class="reagent">reagent</span></h3>
+        <p>
+          We've given you access to the AI models required for this assignment
+          through a website called
+          <a href="https://rea.gent/" class="reagent">reagent</a>. Using
+          <span class="reagent">reagent</span>, you can:
+        </p>
+        <ul>
+          <li>Configure your prompts to AI models</li>
+          <li>Experiment in the web interface</li>
+          <li>Quickly get code that uses these AI models</li>
+          <li>View past and currently-running API calls</li>
+          <li>Track how much your API calls are costing</li>
+        </ul>
+        <p>
+          We've also pre-configured <strong>$0.65</strong> (= 65 “credits”) per
+          student in spending credit on <span class="reagent">reagent</span> so
+          you can complete this assignment without having to configure your own
+          billing credentials or API keys. Note that
+          <strong
+            >if you spend all of these credits, you will need to complete the
+            assignment by configuring your own personal API keys
+            manually</strong
+          >
+          within <span class="reagent">reagent</span>. Be careful not to use up
+          all your credits before completing the assignment, and leave some
+          credits for the autograder to run as well!
+        </p>
+        <p>
+          You can access this pre-configured credit by logging into
+          <span class="reagent">reagent</span> using the GitHub email you
+          specified in the course's introductory survey form at the start of the
+          semester. When you log in, head to the Organizations tab and accept
+          the invitation to the organization for our class (we've invited you
+          based on your GitHub account). If you don't see the invitation, reach
+          out to course staff with your GitHub username so we can get you
+          sorted.
+        </p>
+        <p>
+          The walkthrough video for this task shows you how to use
+          <span class="reagent">reagent</span> for email subject generation.
+        </p>
+        <h3>Implementation</h3>
+        <p>
+          When you are ready to implement the feature, update the JavaScript in
+          the <code>task1</code> folder; the live page is
+          <a href="/code/#/task1">here</a>. We have supplied you with an event
+          listener that gets called when the user presses the “Suggest” button;
+          implement this button-click listener so that the subject line is
+          automatically updated with a suggestion based on the current body of
+          the email.
+        </p>
+        <!-- <p>
+          You'll notice that this event listener is an
+          <code>async</code> function. This will permit you to use the
+          <code>await</code> keyword, in case you want to use it for the request
+          to the LLM API. Remember this detail for your future projects!
+        </p> -->
+        <p>
+          You can test this feature with any of the emails supplied in the
+          <code>task1/emails</code> folder, or an email composition of your own!
+        </p>
+        <p>
+          If you try with <code>test-email-4.txt</code>, you'll find that
+          although the email is written in another language than your prompt,
+          the application still seems to work (although, in my experience,
+          unless you ask specifically, the model will sometimes still provide
+          the actual subject in English despite correctly guessing the meaning
+          of the non-English body text).
+        </p>
+        <p>
+          This is a benefit of using a foundation model like GPT-5-mini: the
+          model can leverage knowledge from its training data even in situations
+          you didn't plan for, as the developer. Of course, the model can
+          <em>also</em> behave in ways you don't <em>want</em> it to behave.
+          Once you've gotten your application working, see if you can fool the
+          model into doing something strange using just the interactions
+          provided by your application.
+        </p>
+        <h3>Report</h3>
+        <ul>
+          <li>Include the prompt(s) you used and a link to your Noggin(s).</li>
+          <ul>
+            <li>
+              Since you'll create your Noggins within the class “organization”,
+              course staff will be able to pull them up during grading. The
+              Noggin URL will look something like:
+            </li>
+            <li><code>https://rea.gent/noggins/abcd-efgh-1234/edit</code></li>
+          </ul>
+        </ul>
       </section>
 
-      <section id="Part_1">
-        <h2>Part 1 · Reusable components</h2>
+      <section id="Task_2">
+        <h2>Task 2 · Planet finder (4 points)</h2>
+        <p>
+          <em> Skills: using the output of text completion models </em>
+          <br />
+          <em>Task 2 expected cost: 15 credits</em>
+        </p>
+        <h3>Introduction</h3>
+        <p>
+          You're a travel agent in the year 2445. The most popular travel
+          destinations these days require interstellar travel, but they're
+          marvelous:
+        </p>
+        <table class="planet-table">
+          <tr>
+            <td>
+              <img src="images/alekhine.png" alt="" />
+            </td>
+            <td>
+              <p><strong>Alekhine</strong></p>
+              <p>
+                Continents — or, more precisely, islands — on the largely
+                aquatic planet of Alekhine are in a perpetual state of
+                rotational drift. Though the largest islands rotate only a few
+                degrees per year, small islands are known to spin freely, some
+                completing a single revolution in just a few hours.
+              </p>
+              <p>
+                A tradition of intellectual curiosity goes back on this planet
+                as far as human settlers do, in large part due to an early
+                demand to bring clever problem-solvers in as settlers. How do
+                you plan a city across an archipelago of individually-rotating
+                islands? How can you maintain utility lines and train tracks?
+                Only by enticing the best city planners, engineers, and even
+                graph theorists did local governments get a hold on the
+                complexity.
+              </p>
+              <p>
+                Now that the basic issues are largely ironed out, the residents
+                of Alekhine have found other ways to spend their time. Tall
+                buildings, many painted a creamy white, host some of the
+                galaxy’s most prestigious academic institutions. Some residents
+                have taken to designing island-scale puzzles for visitors,
+                requiring participants to summon their ingenuity to unpack the
+                complexities of the ground rotating under their feet.
+              </p>
+              <p>
+                Others choose a simpler life, riding the uniquely-circular waves
+                on custom surfboards or tending to extravagant gardens that
+                don’t require plants to be manually rotated. On Alekhine, humans
+                have conquered the strange dynamic geology to their own benefit.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/janon.png" alt="" />
+            </td>
+            <td>
+              <p><strong>Janon</strong></p>
+              <p>
+                The planet Janon is filled to the brim with nature, both oddly
+                familiar and completely bewildering to natives of Earth.
+                Equalizing wind currents leave most of the planet at an equally
+                tropical temperature, lush with fractal tree-like plants, dotted
+                with reservoirs of mostly-fresh water, and populated with beasts
+                both mighty and meek. Compared to organisms on Earth, animals
+                tend to be less astute (and none is nearly as intelligent as
+                Earth’s primates are), but plants seem to flourish in
+                coordinated patterns, leaving some to believe that they possess
+                some limited intelligence of their own.
+              </p>
+              <p>
+                Human outposts are hard to come by, since building them involves
+                cutting through dense jungle in most parts of the world. Those
+                settlements that do exist tend to be densely populated, with
+                tightly-packed tall buildings that look over canopies of trees
+                off in the distance.
+              </p>
+              <p>
+                Janon is known for its exquisite cuisine, a trait unfortunately
+                not coincidental with its rich wildlife; animals’
+                naturally-evolved instincts on the planet are no match for the
+                skills of even a rudimentary hunter. Already some of the most
+                delectable species on the planet are considered endangered, just
+                a few generations after humanity systematically catalogued which
+                meats were safe to eat, which were toxic, and which seem to just
+                give you the runs.
+              </p>
+              <p>
+                The crown jewel of Janon is Valoret, a city built in a rare
+                clearing occupying around a hundred thousand acres. Local
+                cuisine from around the planet is imported into the city, kept
+                fresh only by the efficiency of a one-of-a-kind aerial logistics
+                system that is held aloft by the globe’s natural wind currents.
+                Beyond the clearing, suburbs expand outwards into the
+                surrounding rainforest, connected by an underground
+                transportation system that keeps the aboveground biosphere
+                largely untouched.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/guilin.png" alt="" />
+            </td>
+            <td>
+              <p>
+                <strong>Guilin</strong>
+              </p>
+              <p>
+                Owing to its regular seismic activity, the planet Guilin is a
+                haven for those who enjoy hot springs and impressive geyser
+                displays. Downward erosion caused by fast-moving water has
+                crafted tall stone towers in many regions on the planet, not
+                unlike the world’s namesake back on Earth.
+              </p>
+              <p>
+                The largest springs have been commercialized in resorts not
+                unlike water parks, and sizable cities analogous to Earth’s
+                beach towns have sprung up in support of these resorts. Those
+                looking for a quieter place to appreciate the scenery will find
+                no shortage of more private springs, especially far from the
+                more densely-populated areas.
+              </p>
+              <p>
+                The natural spires of Guilin have been a foundation for
+                thrill-seeking activities like bungee jumping and rock climbing,
+                but they also serve as serene outlooks for the beautiful vistas
+                of the planet’s features, especially where elevators have been
+                carved into the side of the stone for easier access to the
+                summits.
+              </p>
+              <p>
+                Guilin’s natural features aren’t limited to just spires and hot
+                springs. It doesn’t take much travel to explore a myriad of
+                geographic wonders far surpassing anything Earth has to offer.
+                The planet’s public transit is limited, however, since the
+                difficult terrain limits what kinds of infrastructure can be
+                built. Bring your own hovercraft!
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/jayne.png" alt="" />
+            </td>
+            <td>
+              <p>
+                <strong>Jayne</strong>
+              </p>
+              <p>
+                The planet Jayne, despite its hot weather and limited access to
+                drinking water, is a monument to manual handiwork and a marvel
+                of modern sculpture. Every historical figure, even those of
+                middling significance, is personally commemorated by a
+                life-sized statue. No one knows how many statues are present on
+                the planet, but current estimates suggest that Jayne’s largest
+                city adds dozens to the count every day. There are figures here
+                enshrined in stone who don’t even meet the notability standards
+                of Galactic Wikipedia.
+              </p>
+              <p>
+                For reasons that are fuzzy even to the most dedicated
+                historians, Jayne’s cities have universally adopted a policy of
+                redistributing wealth through a monthly ceremony during which
+                golden coins are dropped from the sky by aerial vehicles. Some
+                question the distribution mechanism, but no one is willing to
+                reform the system if it means breaking tradition.
+              </p>
+              <p>
+                If you happen to be present during a distribution, even as a
+                tourist, you’re welcome to take what you can grab! Some
+                penny-pinching visitors have been known to break even on their
+                visits to the planet.
+              </p>
+              <p>
+                Traditionally, the exact timing of the monthly money-drop comes
+                as a surprise to residents. When the gold is dropped during just
+                the right twilight, some say, not without a hint of nostalgia,
+                that the tumbling coins off in the distance twinkle like
+                fireflies.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <em style="text-align: center; width: 100%; display: block">
+          Images produced with SDXL v1.0. You’ll play with Stable Diffusion in
+          the next task!
+        </em>
+        <p>
+          You're looking to build a website to
+          <strong>help people choose their next travel destination</strong>.
+          We've built a <a href="/code/#/task2">basic site</a> with links to
+          information pages about each destination, but you need to make them
+          smart.
+        </p>
+        <p>
+          The main page includes a text box where the user can type out their
+          query, with the hope of finding a good match for their travel
+          destination. For example, a user typing something like:
+        </p>
+        <blockquote>
+          I want a place like a museum, where I can see sculptures and learn
+          about people from history.
+        </blockquote>
+        <p>
+          might be told they should visit the planet <strong>Jayne</strong>,
+          which is filled with statues of historical figures.
+        </p>
+        <p>
+          Your job is to <strong>implement this recommendation system</strong>:
+        </p>
+        <ul>
+          <li>
+            When the user types their query and clicks “Help me choose”, they
+            should be <strong>directed to the web page section</strong> for the
+            planet most associated with their query. We have provided a
+            JavaScript function to navigate to another sub-page (you won't need
+            to actually navigate to a new URL; just call the provided function
+            with the appropriate argument). In your intelligent UI,
+            <strong
+              >this redirection should happen automatically after the query is
+              submitted</strong
+            >, without any further interaction from the user.
+            <!-- This requirement ensures that the LLM output is parsed, rather than just allowing a chat response to be shown to the user (who would then need to click on the associated planet link). -->
+          </li>
+          <li>
+            You can accomplish this with a prompt to an LLM like gpt-5-mini (as
+            we did in the previous task). In
+            <span class="reagent">reagent</span>, you should make a new Noggin
+            for this task.
+          </li>
+          <ul>
+            <li>
+              You can insert each planet's description right into the LLM
+              prompt, which will make sure that the provided details are
+              available when the LLM is deciding which planet to recommend to
+              the user. There's no need to make this extend past just the four
+              planet descriptions provided, so it's okay to hardcode the LLM
+              prompt.
+            </li>
+            <ul>
+              <li>
+                You may also choose to use multiple prompts for this task,
+                rather than one big one. The details are up to you!
+              </li>
+            </ul>
+            <li>
+              This time, since you're not showing the response directly to the
+              user, but rather <em>using</em> the response in your UI code, you
+              want to make sure the LLM returns some text in a way you can
+              parse. This may require a combination of clever prompting and
+              JavaScript code to make sure the response can be used to show the
+              user one of the subpages. You may also find the “structured
+              output” option in <span class="reagent">reagent</span> to be
+              useful.
+            </li>
+            <ul>
+              <li>
+                Try to make sure the model <em>always</em> offers a suggestion
+                to the user.
+              </li>
+              <li>
+                Try to make sure the model always offers just
+                <em>one</em> suggestion to the user; make sure your prompt and
+                subsequent response-parsing logic is hardened so that the chat
+                model doesn't waffle between two options.
+              </li>
+            </ul>
+            <li>
+              For <strong>one point</strong> of extra credit,
+              <strong>in addition</strong> to redirecting the user to the right
+              sub-page for their recommended planet, show the user a brief (one
+              or two sentence) explanation for <em>why</em> they might enjoy
+              this planet, given their query. We won't grade this for strict
+              aesthetic value, but you should make sure to design something
+              reasonable for this to earn full credit. As in previous
+              assignments, extra credit will not cause your grade to exceed
+              20/20.
+            </li>
+            <li>Each request is likely to cost less than 0.1 credits.</li>
+          </ul>
+        </ul>
+        <p>
+          Here are some queries you can try once you've gotten everything hooked
+          up:
+        </p>
+        <ul>
+          <li>
+            <em>I want a place where I can study mathematics.</em>
+          </li>
+          <ul>
+            <li>likely suggestion: Alekhine</li>
+          </ul>
+          <li>
+            <em>My favorite place on Earth is the Grand Canyon</em>
+          </li>
+          <ul>
+            <li>likely suggestion: Guilin</li>
+          </ul>
+          <li>
+            <em>I’m a botanist</em>
+          </li>
+          <ul>
+            <li>likely suggestion: Janon</li>
+          </ul>
+          <li>
+            <em>I’m poor and can’t afford a big vacation</em>
+          </li>
+          <ul>
+            <li>likely suggestion: Jayne</li>
+          </ul>
+          <li>
+            <em
+              >I’m a big fan of escape rooms and other challenges like that</em
+            >
+          </li>
+          <ul>
+            <li>likely suggestion: Alekhine</li>
+          </ul>
+          <li>
+            <em>I need a spa day.</em>
+          </li>
+          <ul>
+            <li>likely suggestion: Guilin</li>
+          </ul>
+          <li>
+            <em> J’aime bien manger des repas bizarres </em>
+          </li>
+          <ul>
+            <li>(I really like to eat strange meals)</li>
+            <li>likely suggestion: Janon</li>
+          </ul>
+        </ul>
+        <p>
+          Try your own queries, too! As you can see, the model can respond even
+          to queries that don't quite match the wording (or even the language)
+          in your original prompt. It's okay if you don't get a 100% success
+          rate on these queries, and sometimes the model will respond
+          differently when you make the same query more than once. For our
+          prototype, this imperfection is okay!
+        </p>
+        <p>
+          When you're testing your software, remember to practice good
+          <strong>data hygiene</strong>. That means, if you give the model
+          <strong>examples</strong> in your prompt, make sure that you're
+          testing your application using <strong>different</strong> examples.
+          The whole thing becomes moot if the model can just look up the user's
+          exact query in the provided examples!
+        </p>
+
+        <h3>Report</h3>
+
+        <ul>
+          <li>Include the prompt(s) you used and a link to your Noggin(s).</li>
+          <li>Please note whether you completed the extra credit task.</li>
+        </ul>
+      </section>
+
+      <section id="Task_3">
+        <h2>Task 3 · Shopping list images (4 points)</h2>
 
         <p>
-          There are two big reasons to use components in React. The first is to
-          <a
-            href="https://react.dev/learn/understanding-your-ui-as-a-tree"
-            target="_blank"
-            rel="noopener noreferrer"
-            >break up your application’s code into a hierarchy</a
-          >; we did this in the Sidebar component, to avoid having to clutter
-          the <code>App.jsx</code> file with all of the sidebar’s content.
+          <em>Skills: text-to-image models</em>
+          <br />
+          <em>Task 3 expected cost: 20 credits</em>
+        </p>
+
+        <h3>Introduction</h3>
+
+        <p>
+          Inside the <code>task3</code> directory, you'll find a
+          <a href="/code/#/task3"> simple “shopping list” app </a>. When the
+          user types in an item name, the item gets added to the list.
+        </p>
+
+        <div class="image-container">
+          <img src="images/image-gen.png" alt="A shopping list app" />
+        </div>
+
+        <p>
+          In the app, there's a spot for an image to be rendered in the shopping
+          list. Use a <strong>text-to-image (TTI) model</strong> to generate an
+          image automatically for whatever the user types. These models take in
+          some text <strong>prompt</strong> as an input and respond with some
+          image as output.
         </p>
 
         <p>
-          The other is to create reusable UI elements so that you don’t need to
-          rewrite the same HTML structure over and over.
+          We recommend using SDXL Lightning, which you'll have access to through
+          <span class="reagent">reagent</span> (as
+          <code>replicate/bytedance_sdxl-lightning-4step</code>). You can also
+          try other models, like FLUX, Stable Diffusion, or the base SDXL model
+          (which all have different speeds, costs, and quality). A typical image
+          costs around 0.25 credits to generate with the Lightning model, so you
+          don't want to overdo it when you're prototyping, lest you run out of
+          credits in the class organization.
         </p>
 
         <p>
-          Peek into <code>src/luggage-overview/LuggageOverview.jsx</code>. This
-          is the code for the landing page of the application; it describes the
-          different sizes of luggage bag that users are allowed to bring onto a
-          flight. This page isn’t dynamic, and we won’t add any interactivity to
-          it for now; it’s just informational.
+          In <span class="reagent">reagent</span>, if you're worried about
+          spending your credits too early, you can also create a Noggin using
+          the <code>test/identicon</code> model, which will not use any credits,
+          generating just a simple placeholder image for testing. These Noggins
+          will not be backed by AI, so they won't generate images reflective of
+          the prompt. Make sure to
+          <strong>switch to using a real TTI model</strong> (by making a new
+          Noggin) when you're ready to submit your work!
+        </p>
+
+        <h3>Style</h3>
+
+        <p>
+          First, <strong>pick a style</strong> for your shopping list items.
+          Text-to-image models can generate images in a variety of styles, if
+          you're clever about how you construct your prompt (these models can be
+          quite picky):
+        </p>
+
+        <table class="image-style-table">
+          <tr>
+            <td>
+              <img src="images/oj-watercolor.png" />
+            </td>
+            <td>
+              <img src="images/oj-cinematic.png" />
+            </td>
+            <td>
+              <img src="images/oj-anime.png" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a
+                href="https://stable-diffusion-art.com/sdxl-styles/#Artstyle_Watercolor"
+                >watercolor painting <strong>orange juice</strong>. vibrant,
+                beautiful, painterly, detailed, textural, artistic</a
+              >
+            </td>
+            <td>
+              <a href="https://stable-diffusion-art.com/sdxl-styles/#Cinematic"
+                >cinematic film still <strong>orange juice</strong>. shallow
+                depth of field, vignette, highly detailed, high budget, bokeh,
+                cinemascope, moody, epic, gorgeous, film grain, grainy</a
+              >
+            </td>
+            <td>
+              <a href="https://stable-diffusion-art.com/sdxl-styles/#Anime"
+                >anime artwork <strong>orange juice</strong>. anime style, key
+                visual, vibrant, studio anime, highly detailed</a
+              >
+            </td>
+          </tr>
+        </table>
+        <em style="text-align: center; width: 100%; display: block"
+          >images produced by SDXL 1.0, with detailed prompts as linked above
+        </em>
+        <p>
+          You can find prompt templates online that will make it easier to ask
+          the model to adhere to a particular style. For the SDXL model, I'm a
+          fan of the prompts available on the website linked in the table above,
+          but feel free to search around or experiment! Note that prompts to
+          text-to-image models look quite different from prompts to large
+          language models, so it's good to look at examples before writing your
+          own.
+        </p>
+
+        <p>
+          We recommend sticking with the default large image size, even if
+          you're planning to render images smaller. These models start acting
+          weird at smaller sizes.
+        </p>
+
+        <h3>Implementation</h3>
+
+        <p>
+          Update the code in the <code>task3</code> folder to insert a generated
+          image when creating a new shopping list item.
+        </p>
+
+        <p>
+          With <span class="reagent">reagent</span>, the response to your API
+          call will be a redirect to the generated image. You can either get the
+          raw contents of the image with <code>fetch</code> and
+          <code>response.blob()</code>, or you can
+          <strong>use the API call URL directly</strong> in an
+          <code>&lt;img&gt;</code> tag's <code>src</code> attribute. For
+          example:
+        </p>
+
+        <div style="margin-left: 40px">
+          https://noggin.rea.gent/lengthy-prawn-9387?key=rg_v1_tp…cz_ngk&prompt=...
+          <div style="margin-left: 40px">will redirect to:</div>
+          https://objects.rea.gent/noggin-run-outputs/0b…58.png,
+          <div style="margin-left: 40px">
+            so the browser will render this as an image.
+          </div>
+        </div>
+
+        <p>
+          Keep in mind that these image models can be a little slow to generate
+          (on the order of a few seconds), so be patient once you've added a new
+          shopping list item. This can affect how you design your interactions
+          using text-to-image models!
+        </p>
+
+        <p>
+          Although a simple image database lookup might suffice for everyday
+          shopping list items, using generative AI can help react flexibly to
+          any inputs from a user. A traditional system wouldn't know what to do
+          with “DJ costume for my cat”, but SDXL Lightning has an idea:
         </p>
 
         <div class="image-container">
           <img
-            src="images/luggage-types.png"
-            alt="A screenshot of the landing page of the application."
+            style="max-width: 300px"
+            src="images/cat.png"
+            alt="A generated
+          image of a cat in a DJ costume"
           />
         </div>
 
         <p>
-          It’s not very beautiful! You should
-          <strong
-            >think about how we might structure and style the markup</strong
-          >
-          so that it looks better; maybe the icon could be bigger or in a
-          different spot. Maybe we can render the maximum weight in a way that
-          stands out better. Make some design choices! In particular, you should
-          choose a design that renders each luggage type more or less the same
-          way (but with different content); the motivation for this will come up
-          in a moment.
+          Sometimes, you’ll run into an overeager safety filter that prevents
+          your image from being displayed. In
+          <span class="reagent">reagent</span>, you can check this in the “Use”
+          tab for your Noggin. For this assignment, that’s okay; just try again
+          (maybe with a different prompt).
         </p>
 
-        <p>
-          If you change the markup, you’ll notice that you have to change it in
-          more than one spot to keep the luggage types consistent. Rather than
-          repeating the same markup over and over, let’s extract this into a
-          <a
-            href="https://react.dev/learn/your-first-component"
-            target="_blank"
-            rel="noopener noreferrer"
-            >reusable React component</a
-          >!
-        </p>
-
-        <p>
-          Make a new function (either in the same
-          <code>LuggageOverview.jsx</code> file, or in a new file that you
-          import) that renders a single luggage type. The function should be a
-          React component, meaning:
-        </p>
+        <h3>Report</h3>
 
         <ul>
-          <li>Its name should start with a capital letter</li>
-          <li>
-            It should take in, as its first argument, the
-            <a href="https://react.dev/learn/passing-props-to-a-component"
-              ><code>props</code></a
-            >
-            of the component
-          </li>
-          <li>
-            It should return the JSX markup representing the HTML structure we
-            want to render
-          </li>
-        </ul>
-
-        <p>
-          Then, replace the individual luggage type sections in
-          <code>LuggageOverview.jsx</code> with instances of your new component.
-          It might look something like this:
-        </p>
-
-        <pre style="margin-left: 2rem"><code>&lt;LuggageType
-  name={LUGGAGE_TYPES[0].name}
-  ...
-/&gt;
-&lt;LuggageType
-  name={LUGGAGE_TYPES[1].name}
-  ...
-/&gt;</code></pre>
-
-        <p>
-          Now, you’re free to customize the structure and style of the
-          component, and every change you make will affect both instances at
-          once! Play around with the design until you’re happy with it.
-        </p>
-
-        <h3>Rendering lists</h3>
-
-        <p>
-          Let’s reap the benefits of having a reusable component.
-          <strong>Add a new luggage type</strong> to the
-          <code>LUGGAGE_TYPES</code> array (maybe we‘ll make it the
-          <strong>first</strong> element of the new array, to keep it in order
-          of weight):
-        </p>
-
-        <pre style="margin-left: 2rem"><code>{
-  icon: "🎒",
-  name: "Personal item",
-  maxWeightLbs: 15,
-  description: "A small bag that fits under the seat in front of you.",
-}</code></pre>
-
-        <p>
-          If you’d like, you can add a new copy of the component you made
-          earlier to the page, to see if this worked. But rather than manually
-          hard-coding every component, it’d be better to iterate over the
-          <code>LUGGAGE_TYPES</code> array, automatically making a new component
-          instance for each luggage type. Then, future updates to the array
-          would automatically be reflected in the UI.
-        </p>
-
-        <p>
-          <strong>Render the list of luggage types</strong> dynamically, using
-          the full <code>LUGGAGE_TYPES</code> array. The
-          <a
-            href="https://react.dev/learn/rendering-lists"
-            target="_blank"
-            rel="noopener noreferrer"
-            >React docs show you how to do this</a
-          >
-          in detail, but the simple principle is: include a component in the
-          markup for each element of the array, and don’t forget the
-          <code>key</code> prop! You don’t need to use a list HTML element
-          (<code>ul</code> or <code>ol</code>); the docs show this as an
-          example, but you can render arbitrary dynamic element trees using this
-          approach.
-        </p>
-
-        <p>
-          The result is that your main component rendering code won’t need to
-          change at all if you want to add, remove, or reorder luggage types;
-          only the <code>LUGGAGE_TYPES</code> array needs to be updated.
-        </p>
-
-        <h3>Checklist</h3>
-
-        <p>
-          Make sure you’ve completed all of the following before moving onto the
-          next task:
-        </p>
-
-        <ul>
-          <li>
-            From part 0: updated the background color of the sidebar, and added
-            something new at the top of the sidebar
-          </li>
-          <li>
-            Changed the design of the luggage type display to something nicer
-          </li>
-          <li>
-            Created a reusable React component to render a single luggage type
-          </li>
-          <li>
-            Added the “personal item” luggage type to the
-            <code>LUGGAGE_TYPES</code> array
-          </li>
-          <li>
-            Rendered the list of luggage types dynamically, by iterating over
-            the <code>LUGGAGE_TYPES</code> array or using the <code>map</code>
-            function
-          </li>
+          <li>Include the prompt(s) you used and a link to your Noggin(s).</li>
         </ul>
       </section>
 
-      <section id="Part_2">
-        <h2>Part 2 · Adding interactivity</h2>
+      <section id="Task_4">
+        <h2>Task 4 · Board game inventory (4 points)</h2>
 
         <p>
-          Not all luggage is allowed for every plane ticket. In our airline’s
-          “Basic Economy” fare class, only a personal item and a carry-on bag
-          are allowed.
+          <em>Skills: vision-language models, parsing model output</em>
+          <br />
+          <em>Task 4 expected cost: 20 credits</em>
         </p>
 
+        <h3>Introduction</h3>
         <p>
-          Let’s add an option to the page that lets the user select whether they
-          are on a Basic Economy fare, and if so, do not show the option for
-          checked luggage.
+          You've just gotten a job at a local board game cafe! The cafe owner
+          wants to introduce a new recommendation system for customers to find a
+          fun game to play with their friends.
         </p>
-
         <p>
-          We’ll start out with a simple design for this feature, a button that,
-          when clicked, toggles whether the user is on a Basic Economy fare or a
-          normal (full-featured) fare.
-        </p>
-
-        <p>
-          In HTML, we can use the <code>&lt;button&gt;</code> tag to make a
-          clickable, interactable button:
-        </p>
-
-        <pre
-          style="margin-left: 2rem"
-        ><code>&lt;button&gt;Toggle Basic Economy&lt;/button&gt;</code></pre>
-
-        <p>
-          If you add this to your page, it won’t do anything yet, but it’ll look
-          something like this:
-        </p>
-
-        <div style="margin-left: 2rem">
-          <button>Toggle Basic Economy</button>
-        </div>
-
-        <p>
-          Now, how do we make it so that clicking this button can control the
-          displayed luggage types?
-        </p>
-
-        <p>
-          In React, we can attach <strong>program state</strong> to a component,
-          ensuring that the state value is remembered even as the component
-          re-renders. We do this with the <code>useState</code> function, which
-          we’re already using in <code>App.jsx</code> to decide which page to
-          render.
-        </p>
-
-        <p>
-          Have a look at
-          <a
-            href="https://react.dev/learn/state-a-components-memory"
-            target="_blank"
-            rel="noopener noreferrer"
-            >React’s documentation about useState</a
-          >, especially the examples!
-        </p>
-
-        <p>
-          With <code>useState</code>, add a Boolean state variable
-          (<code>basicEconomy</code>) to the
-          <code>LuggageOverview</code> component. Don’t forget to import the
-          <code>useState</code> function (you can see how this is done in
-          <code>App.jsx</code>, or see if you can get your IDE to help you
-          import the function automatically).
-        </p>
-
-        <p>
-          Add a button, too, so that when the user clicks the button, the
-          <code>basicEconomy</code> state variable toggles: if it was
-          <code>true</code>, it becomes <code>false</code>, and vice versa. In
-          React, you can add a click handler to a button using the
-          <code>onClick</code> prop; the examples in the documentation do this a
-          lot.
-        </p>
-
-        <p>
-          Then, use the value of the <code>basicEconomy</code> state variable to
-          decide whether to render the checked luggage option.
-        </p>
-
-        <p>
-          In the last part, we made a reusable component to render a luggage
-          type, and then rendered the list so that we don’t have to write
-          separate code for each luggage type. This is a good pattern, but now
-          we need a way to distinguish the checked luggage type from the others.
-          You might do this by adding a new field to the luggage type objects in
-          the <code>LUGGAGE_TYPES</code> array, something like
-          <code>allowedInBasicEconomy</code>:
-        </p>
-
-        <pre style="margin-left: 2rem"><code>[..., {
-  ...
-  name: "Carry-on",
-  allowedInBasicEconomy: true,
-  ...
-},
-{
-  ...
-  name: "Checked bag",
-  allowedInBasicEconomy: false,
-  ...
-}]</code></pre>
-
-        <p>
-          Then, based on the state variable, you can choose whether or not to
-          render luggage types that have <code>allowedInBasicEconomy</code> set
-          to <code>false</code>.
-        </p>
-
-        <p>
-          You can do this either by filtering the array (so that you only render
-          the relevant components in the first place) or by returning
-          <code>null</code> (rather than HTML markup) from components that
-          shouldn’t appear on the page.
-        </p>
-
-        <p>Check that this button works correctly before moving on:</p>
-
-        <div class="image-container">
-          <video controls muted loop autoplay style="max-width: 700px">
-            <source src="images/basic-economy.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-        <p>What’s the problem here?</p>
-
-        <p>
-          The state isn‘t visible to the user! Although the interactivity works,
-          it’s not clear whether Basic Economy is currently active or not.
-        </p>
-
-        <p>One thing we could do is actively render the state into the page:</p>
-
-        <pre
-          style="margin-left: 2rem"
-        ><code>let buttonText = "Toggle Basic Economy";
-if (basicEconomy) {
-  buttonText += ' (currently ON)';
-} else {
-  buttonText += ' (currently OFF)';
-}
-
-...
-
-&lt;button onClick={...}&gt;
-  {buttonText}
-&lt;/button&gt;</code></pre>
-
-        <p>This works!</p>
-
-        <div class="image-container">
-          <video controls muted loop autoplay style="max-width: 700px">
-            <source src="images/basic-economy-2.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-        <p>
-          But we’re reinventing the wheel a bit here... aren’t there already
-          well-designed togglable components that communicate their current
-          state?
-        </p>
-
-        <h3>Controlled components</h3>
-
-        <p>
-          This really ought to be a <strong>checkbox</strong>. HTML offers a
-          checkbox element, a variant of the <code>&lt;input /&gt;</code> tag:
-        </p>
-
-        <pre
-          style="margin-left: 2rem"
-        ><code>&lt;label&gt;Basic economy: &lt;input type="checkbox" /&gt;&lt;/label&gt;</code></pre>
-
-        <p>
-          (including a <code>label</code> ensures that the browser knows that
-          this text is associated with the form control, which is great for
-          accessibility; it will also make it so that clicking on the text
-          toggles the checkbox. See below:)
-        </p>
-
-        <div style="margin-left: 2rem">
-          <label>Basic economy: <input type="checkbox" /></label>
-        </div>
-
-        <p>
-          If you add this to your page, you’ll see the checkbox. It will even be
-          interactive, without you needing to write any code! But it won’t
-          control (or reflect the value of) our state variable.
-        </p>
-
-        <p>
-          In React, we control <code>&lt;input /&gt;</code> elements the same
-          way we just controlled our button, by rendering the current state and
-          then accepting interactions that update the state.
-        </p>
-
-        <p>
-          The checkbox component takes a <code>checked</code> prop, which
-          decides whether the checkbox shows as being checked. If you set this
-          to <code>true</code> or <code>false</code>, the checkbox will actually
-          <em>stop</em> being interactive (since React is forcing its value to
-          whatever the <code>checked</code> prop is set to).
-        </p>
-
-        <div style="margin-left: 2rem">
-          <!-- this is not React! just good, ol'-fashioned inline javascript. -->
-          <label
-            >Basic economy:
-            <input type="checkbox" checked onchange="this.checked = true;"
-          /></label>
-        </div>
-
-        <p>
-          To make the checkbox interactive again, we need to
-          <strong>use the state variable</strong> as the value for the
-          <code>checked</code> prop. Then, we should update our state variable
-          (<code>basicEconomy</code>) when the box is checked or unchecked. We
-          can do this with an onChange handler, as
-          <a
-            href="https://react.dev/reference/react-dom/components/input#my-checkbox-doesnt-update-when-i-click-on-it"
-            >shown here in the React docs</a
-          >.
-        </p>
-
-        <p>
-          Even if we change the state variable for some other reason (say, the
-          user chose some other option that is incompatible with Basic Economy,
-          so we set the state variable to
-          <code>false</code>
-          ), this technique will update the checkbox whenever the state changes.
-          The change doesn’t only need to come from the user clicking the box.
-        </p>
-
-        <p>
-          A component that works like this — routing state <em>through</em> a
-          state variable — is called a <strong>controlled component</strong>,
-          since React is in charge of what state to render, as well as updating
-          it when the user interacts with the page.
-        </p>
-
-        <p>
-          <strong>Add this working checkbox to your page</strong>, and remove
-          the button you made earlier.
+          First, though, the staff needs to take inventory, keeping track of
+          which games are owned by the cafe, alongside some basic information
+          about each game, like the number of recommended players, the average
+          playtime, and the suggested minimum age of the game.
         </p>
 
         <div class="image-container">
-          <video controls muted loop autoplay style="max-width: 700px">
-            <source src="images/basic-economy-3.mp4" type="video/mp4" />
-          </video>
+          <img src="images/pandemic.jpg" alt="" />
         </div>
+        <span
+          style="
+            width: 100%;
+            text-align: center;
+            display: block;
+            font-size: 0.8em;
+          "
+          >Pandemic is a game for 2-4 players aged 10+, and a single play takes
+          45 minutes.
+        </span>
 
         <p>
-          You’re encouraged to try a more interesting design than a checkbox in
-          your final submission — a drop-down box? a set of tabs? a toggle
-          switch? — but the checkbox design (as long as it’s clear and
-          aesthetically appealing!) is acceptable here.
+          Your manager has made this your job! In the <code>task4</code> folder,
+          you'll find the <a href="/code/#/task4">inventory interface</a> you're
+          expected to use.
         </p>
 
-        <h3>Checklist</h3>
+        <div class="image-container">
+          <img src="images/game-ui.png" alt="" />
+        </div>
+        <span
+          style="
+            width: 100%;
+            text-align: center;
+            display: block;
+            font-size: 0.8em;
+          "
+          >Here's how you'd fill out that form!</span
+        >
+
         <p>
-          Make sure you’ve completed all of the following before submitting your
-          assignment:
+          “Work smart, not hard,“ they always say, — so instead of typing in
+          every game's data manually, you've decided to add an 🪄
+          <strong>AI feature</strong> that helps you fill out the inventory
+          interface.
         </p>
+
+        <p>
+          The end goal is for you to be able to
+          <strong>take a photo of a board game box</strong> and have it
+          <strong>automatically populate the appropriate information</strong> in
+          the inventory UI. The user should
+          <strong>still be given an opportunity to review</strong> the
+          information before adding the game to the inventory system (before
+          submitting the form), so you should just use the photo to pre-fill the
+          form.
+        </p>
+
+        <h3>Implementation</h3>
+
+        <p>Here's what you'll need to do:</p>
+
+        <ol>
+          <li>
+            Choose a <strong>vision language model</strong> to use in your
+            project.
+          </li>
+          <ol type="a">
+            <li>
+              We find that the upper-end GPT models with vision (like
+              <code>gpt-5</code>) are not too expensive and are good at a wide
+              variety of tasks, including those that involve reading text.
+            </li>
+            <li>
+              You can also try any of the Anthropic Claude models; we've found
+              that the Sonnet 3.5 model seems to work well here. The cheaper
+              vision-enabled models (<em>e.g.,</em> <code>gpt-5-mini</code> and
+              Claude's <code>haiku</code> model) are worth trying, but they may
+              not perform as well.
+            </li>
+            <!-- TODO: add a better open-source multimodal model? -->
+            <!-- <li>
+              An open-source model you can try is LLaVA (in
+              <span class="reagent">reagent</span> as
+              <code>replicate/yorickvp_llava-13b</code>), although we've found
+              it's not as good at tasks that involve reading text.
+            </li> -->
+          </ol>
+          <li>
+            Come up with a <strong>prompt</strong> that causes the language
+            model to take in a photo and
+            <strong>outputs the relevant information</strong> in a way you can
+            use in your own software.
+          </li>
+          <ol type="a">
+            <li>
+              We recommend asking the model to respond in <strong>JSON</strong>,
+              and explaining the specific format you're looking for in your
+              prompt. You can also use the
+              <strong>Structured data output</strong> feature of
+              <span class="reagent">reagent</span> with some models (like GPT-5)
+              to request that the model adhere to a particular JSON format
+              (click on the “Freeform Text” dropdown under “Model output”):
+              <div class="image-container">
+                <img src="images/struc.png" alt="" />
+              </div>
+              But even models without this “structured data” feature enabled are
+              likely to respond well if you simply ask them to output in a
+              particular format.
+            </li>
+          </ol>
+          <li>
+            Modify the provided starter code. When the user uploads a photo,
+            <strong>send that photo to the vision language model</strong> with
+            the prompt you wrote. When the language model responds, use that
+            response to pre-fill the form.
+          </li>
+          <ol type="a">
+            <li>
+              When the user selects a file, we use the
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader"
+                >FileReader API</a
+              >
+              to read the contents of the selected image file from the user’s
+              computer. In particular, we read the image as a
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs"
+                >data URL</a
+              >.
+
+              <div
+                style="
+                  font-size: 11pt;
+                  background-color: #e8e2f5;
+                  padding: 10px;
+                  border-radius: 5px;
+                  margin-top: 10px;
+                  border: 1px solid #b39ddb;
+                  margin: 12px 0;
+                "
+              >
+                A data URL, which starts with <code>data:</code> instead of a
+                request protocol like <code>http:</code>, can be used in many
+                places where other URLs work (like in links,
+                <code>&lt;img&gt;</code> src attributes, CSS background images,
+                <code>&lt;audio&gt;</code> tags, etc.). The difference from
+                typical URLs is that, instead of linking to some asset that the
+                browser will retrieve using an HTTP request, data URLs
+                <em>contain</em> the entire asset inside the URL, encoding the
+                binary byte data with
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Glossary/Base64"
+                  >base-64 encoding</a
+                >. A data URL looks something like this:<br />
+                <br />
+                <blockquote style="font-style: normal">
+                  <code style="color: #1565c0">data:</code
+                  ><code style="color: #e65100">image/png;</code
+                  ><code style="color: #880e4f">base64,</code
+                  ><code>iVBORw0KGgoAAAANSUhEUgAAAAEAA...</code><br />
+                </blockquote>
+                <br />
+                First is the <code style="color: #1565c0">data:</code> prefix
+                specifying that this is a data URL. Then, a
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Glossary/MIME_type"
+                  >MIME type</a
+                >
+                (<code style="color: #e65100">image/png</code>) that tells the
+                browser what kind of file this is (like a file extension does).
+                The text <code style="color: #880e4f">base64</code> chooses the
+                encoding type, followed by the actual encoded data.
+              </div>
+            </li>
+            <li>
+              Most APIs (including those offered by
+              <span class="reagent">reagent</span>) let you use a data URL to
+              send an image to the model.
+            </li>
+            <ol type="i">
+              Because GPT and Claude models allow you to intersperse text and
+              images, you can create an image variable the same way as a text
+              variable. Just make sure to change the variable type in the right
+              pane!
+
+              <div class="image-container">
+                <img
+                  style="width: 350px"
+                  src="images/image-variable.png"
+                  alt=""
+                />
+              </div>
+
+              Start with a “low-quality” image variable and see if it works for
+              your purposes before jumping to “high” quality, since it’s often
+              sufficient (and will be cheaper to run). Note that only the OpenAI
+              GPT models support this quality selector in
+              <span class="reagent">reagent</span>
+              at the moment.
+            </ol>
+            <li>
+              Once you receive a response from the model, you can use the
+              <code>JSON.parse(str)</code> function in JavaScript to convert
+              from a string to a JSON object.
+            </li>
+            <ol type="i">
+              In some cases, it will be technically possible for the model not
+              to respond in parsable JSON, for example if the response is
+              truncated or if the response does not follow your prompt
+              instructions. If this happens, it is okay in this assignment for
+              your application to simply throw an error, but you should try to
+              prevent it from happening in the first place!
+            </ol>
+            <li>
+              <strong>If any requested information is not in the photo</strong>
+              (<em>e.g.,</em> if the board game box doesn’t include an ‘expected
+              game length’ datum), do not pre-fill anything into that form
+              field. Try to make sure the model doesn’t just make stuff up! This
+              may require both some prompt tuning and some work in your code.
+            </li>
+          </ol>
+        </ol>
+
+        <p>
+          See the <code>board-game-images</code> folder we’ve provided for some
+          example images you can use. If you have board games at home, try those
+          too!
+        </p>
+
+        <p>
+          Notice that, by prompting the model with natural language, we were
+          able to tune which task the model performs without having to write any
+          code. This can let you build new intelligent behaviors into your
+          software quickly during your prototyping process!
+        </p>
+
+        <h3>Report</h3>
 
         <ul>
-          <li>
-            Added a Boolean state variable (<code>basicEconomy</code>) to the
-            <code>LuggageOverview</code> component, using the
-            <code>useState</code> function
-          </li>
-          <li>
-            Added a checkbox (or other togglable UI element) that controls the
-            value of the <code>basicEconomy</code> state variable
-          </li>
-          <li>
-            Used the value of the <code>basicEconomy</code> state variable to
-            decide whether to render the checked luggage option (likely by
-            updating the <code>LUGGAGE_TYPES</code> array to include a new
-            field)
-          </li>
+          <li>Include the prompt(s) you used and a link to your Noggin(s).</li>
         </ul>
       </section>
-
-      <section id="Part_3">
-        <h2>Part 3 · Luggage planning</h2>
-
-        <p>
-          Let’s create a more interesting interactive page, one that provides
-          some value to the user. On the second page (the “Planner”), we’ll give
-          the user the ability to plan out what’s going to go in each of two
-          bags: a personal item, and a carry-on.
-        </p>
-
-        <div class="image-container">
-          <video controls muted loop autoplay style="max-width: 700px">
-            <source src="images/planner.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <section id="Report">
+        <h2>Report (4 points)</h2>
 
         <p>
-          To keep it simple, we’ll hard-code the application so that it assumes
-          the user just has one of each of these bags.
+          In the root of your submission zip file, please submit a PDF report
+          with links to your Noggins and answers to the following questions:
         </p>
 
-        <p>
-          Implement this application in <code>Planner.jsx</code>. It should have
-          the following features and implementation details:
-        </p>
-
-        <ul>
+        <ol>
           <li>
-            Users can add items to either bag, specifying the name and weight
-            (in pounds) of items as they are added.
-          </li>
-          <ul>
-            <li>
-              Use text fields for data entry (<strong>not</strong>
-              <code>window.prompt</code>, which is a convenient but limited way
-              to get user input)
-            </li>
-            <li>
-              <strong>Prevent</strong> users from adding items (<em>e.g.,</em>
-              by disabling the button(s)) if the “name” field is empty or the
-              weight is negative
-            </li>
-            <li>
-              After successfully adding an item, <strong>clear</strong> the
-              input fields
-            </li>
-          </ul>
-          <li>Show users the items they have added so far in each bag</li>
-          <ul>
-            <li>
-              <strong>Use a React component</strong> to render each item, like
-              we did in Part 1
-            </li>
-          </ul>
-          <li>Let users delete items they have added</li>
-          <li>Calculate and show the total weight of each bag</li>
-          <li>Show a warning if the weight of a bag exceeds its limit</li>
-          <ul>
-            <li>
-              You can hard-code a limit of 15 lb for the personal item, and 22
-              lb for the carry-on
-            </li>
-          </ul>
-        </ul>
-
-        <p>
-          You’re welcome to add additional features or interactions as you see
-          fit! <strong>Make your application beautiful, too</strong>! If you add
-          anything especially fancy, please explain it with instructions in the
-          page so we know how to use your application.
-        </p>
-
-        <p>Here are some tips we think will help you implement this part:</p>
-
-        <h3>Controlled text fields</h3>
-
-        <p>
-          You can use text fields to get user input. The HTML tag for a text
-          field is another variant of the <code>&lt;input /&gt;</code> tag:
-        </p>
-
-        <pre
-          style="margin-left: 2rem"
-        ><code>&lt;input type="text" /&gt;</code></pre>
-
-        <p>
-          You can also use <code>type="number"</code> to get a numeric input
-          field! As with checkboxes, we need to
-          <a
-            href="https://react.dev/reference/react-dom/components/input#my-text-input-doesnt-update-when-i-type-into-it"
-            >control these inputs</a
-          >
-          so that we can use their values.
-        </p>
-
-        <h3>Arrays in state variables</h3>
-
-        <p>
-          Placing arrays in state can be trickier than simpler values like
-          Booleans, numbers, and strings. This is because, to call the state
-          update function (the second value returned by <code>useState</code>),
-          you need to provide a <em>new</em> array representing the changed
-          value.
-        </p>
-
-        <p>
-          It’s important not to change the existing state array directly (<em
-            >e.g.,</em
-          >
-          by using the <code>push</code> function). React expects state values
-          to be
-          <a
-            href="https://react.dev/learn/tutorial-tic-tac-toe#why-immutability-is-important"
-            target="_blank"
-            rel="noopener noreferrer"
-            >immutable</a
-          >, so you can only update the state value by creating a new array with
-          your requested changes and replacing the old array entirely.
-        </p>
-
-        <p>
-          There’s lots of detail on how to do this in
-          <a
-            href="https://react.dev/learn/updating-arrays-in-state"
-            target="_blank"
-            rel="noopener noreferrer"
-            >the React documentation</a
-          >!
-        </p>
-
-        <h3>Making a delete button</h3>
-
-        <p>
-          You might find that you have some trouble making a “Delete” button
-          within a component. When it’s clicked, the button should update the
-          state array in the <em>parent</em> component, removing that item from
-          the state array.
-        </p>
-
-        <p>
-          You don’t have direct access to the parent’s state in a child.
-          Instead, in the code for the <code>Planner</code> component, you’ll
-          need to provide the <code>Item</code> component (or whatever you call
-          it) with a <em>function</em> that can be used to delete that item.
-        </p>
-
-        <p>
-          <a
-            href="https://react.dev/learn/sharing-state-between-components"
-            target="_blank"
-            rel="noopener noreferrer"
-            >This page</a
-          >
-          of the React documentation offers a lot of detail, through a worked
-          example.
-        </p>
-
-        <h3>Disabling buttons</h3>
-
-        <p>
-          You can disable a button by adding the <code>disabled</code> prop to
-          it. If you set this prop to <code>true</code>, the button will be
-          disabled; if you set it to <code>false</code>, it will be enabled. Use
-          a JavaScript expression (in {curly braces}) to decide, based on the
-          program state, whether the button should be enabled or disabled.
-        </p>
-
-        <h3>Checklist</h3>
-
-        <p>
-          See above. Make sure to verify that you’ve implemented each bullet
-          point!
-        </p>
-      </section>
-
-      <section id="Part_4">
-        <h2>Part 4 · Adding a new page</h2>
-
-        <p>
-          Finally, edit <code>App.jsx</code> and <code>Sidebar.jsx</code> to add
-          a <strong>new page</strong> to the application. This page should be
-          called “Summary” or something similar.
-        </p>
-
-        <p>
-          The Summary page is only required to contain one piece of information:
-          <strong
-            >the total weight of all items added in the Planner
-            application</strong
-          >, across all bags. You are welcome to show additional insights to the
-          user!
-        </p>
-
-        <p>
-          If you added one or more state variables in the Planner to track the
-          items in each bag, you’ll notice that
-          <strong>navigating to another page clears the state entirely</strong>,
-          and you certainly won’t have access to that state variable in the
-          Summary page. Both Planner and Summary are children of the App
-          component, but they can't directly share state between one another.
-        </p>
-
-        <p>How do we fix this?</p>
-
-        <p>
-          The answer is to <strong>lift state up</strong>: put the luggage state
-          variable into the App component instead, and give access to it in both
-          Planner and Summary. The
-          <a
-            href="https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example"
-            target="_blank"
-            rel="noopener noreferrer"
-            >React documentation</a
-          >
-          offers some guidance. You’ll need to make sure you can still
-          <strong>update the program state</strong> from the Planner page! This
-          will likely involve passing a function into the props of
-          <code>&lt;Planner&gt;</code>.
-        </p>
-
-        <p>
-          If this is starting to feel like a lot of props being passed back and
-          forth, consider using
-          <a
-            href="https://react.dev/learn/passing-data-deeply-with-context"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Context</a
-          >
-          to manage how data is passed to components. The
-          <a
-            href="https://react.dev/reference/react/useContext#updating-data-passed-via-context"
-            target="_blank"
-            rel="noopener noreferrer"
-            >useContext page</a
-          >
-          provides great exercises on how to update context within your
-          application!
-        </p>
-
-        <p>
-          Using React Context here is optional, but if you choose to use it, you
-          can earn some credit for it in Part 5 of this assignment.
-        </p>
-
-        <h3>Checklist</h3>
-
-        <ul>
-          <li>A new page (Summary) is linked in the sidebar.</li>
-          <li>
-            Navigating between pages does not lose information about which items
-            have been added to bags.
+            What surprised you the most about using foundation models (LLMs,
+            text-to-image models, VLMs) as a backend for your software
+            prototypes? Why?
           </li>
           <li>
-            The Summary page includes the total weight of all items in all bags,
-            updating as the user updates the contents of the bags.
+            <p>
+              We’ve seen in this homework how we can use LLMs to power lots of
+              features within our software, rather than just as chat interfaces;
+              in fact, we didn’t build <em>any</em> chat interactions in these
+              tasks.
+            </p>
+
+            <p>
+              Consider this kind of “intelligent” user interface, where we
+              design a UI that coordinates with an intelligent backend in some
+              way while collecting inputs and displaying outputs to the user.
+            </p>
+
+            <p>
+              Suggest <strong>two new design principles</strong> that we might
+              want to adopt when crafting this kind of interface. Think on the
+              level of
+              <a
+                href="https://www.nngroup.com/articles/ten-usability-heuristics/"
+                >Nielsen’s usability heuristics</a
+              >
+              (<em>e.g.,</em> “design for recognition rather than recall”, or
+              “consistency and standards”) or
+              <a href="https://erichorvitz.com/chi99horvitz.pdf"
+                >Eric Horvitz’s principles for mixed-initiative user
+                interfaces</a
+              >. Your invented design principles can be about anything related
+              to designing these interfaces (<em>e.g.,</em> rules of thumb for
+              implementing UIs, for providing feedback to users, for designing
+              prompts for an LLM, etc.). Provide a justification for each design
+              principle, informed by your experience developing these interfaces
+              so far.
+            </p>
           </li>
-        </ul>
-      </section>
 
-      <section id="Part_5">
-        <h2>Part 5 · Make it your own</h2>
-
-        <p>
-          Grading for this assignment, scored out of 40 points, includes
-          <strong>30 points for functionality</strong>.
-        </p>
-
-        <p>
-          To earn the remaining 10 points, you must
-          <strong>improve the aesthetics of your application</strong>. You can
-          also earn points by <strong>implementing extra features</strong>.
-        </p>
-
-        <h3>New features</h3>
-
-        <p>Here’s a list of features we will award points for:</p>
-
-        <strong>1 point each</strong>
-        <ul>
           <li>
-            Add a “quantity” field so that users can specify how many of a
-            particular item to add
+            <p>
+              In task 4, we saw that it can be quick to prototype using a vision
+              language model. Speculate on some of the
+              <strong>downsides</strong> of building software (either prototype
+              software or end-user software) backed by a vision-language model,
+              especially the kind of software we built in this task.
+            </p>
+
+            <p>
+              Did you run into any trouble during this task? Was there any
+              surprising behavior that might be a cause for concern? Is there
+              anything you might run into down the road, if you deploy software
+              built in this way? Consider alternative ways you might implement
+              smart features, or alternatives to smart features in an
+              application like this.
+            </p>
+
+            <p>
+              This is pretty open-ended, so don’t fret if you’re not confident
+              in your speculations! Outline
+              <strong>at least two downsides</strong> you have identified.
+            </p>
           </li>
-          <li>
-            Add the ability to save and load bags from local storage, so that
-            the program state is not lost when the page reloads
-          </li>
-          <li>Make the sidebar show the currently-selected page</li>
-          <li>
-            Use React Context (or a state management library like Zustand) to
-            manage state across components
-          </li>
-        </ul>
-
-        <strong>2 points each</strong>
-
-        <ul>
-          <li>
-            Allow users to add multiple bags of each type, rather than just one
-          </li>
-          <li>
-            Allow users to reorder items within a bag, or move items between
-            bags
-          </li>
-          <ul>
-            <li>
-              Consider using a “sortable list” library, so that items can be
-              dragged around to reorder
-            </li>
-          </ul>
-          <li>
-            Add inline editing features so that users can change the name or
-            weight of an item without deleting and re-adding it
-          </li>
-          <li>
-            Use React Router or another technique to show different URLs in the
-            browser URL bar depending on the selected page
-          </li>
-          <li>
-            Add more insights to the Summary page, with some kind of useful
-            visual — consider using a library like Plotly or Chart.js!
-          </li>
-        </ul>
-
-        <p>
-          You can earn <strong>up to 6 points</strong> for adding extra
-          features.
-        </p>
-
-        <p>
-          If you add new functionality, <strong>be explicit</strong> about what
-          new features you added. Include some text in the page that describes
-          everything you improved, so we know what to look for!
-        </p>
-
-        <h3>Aesthetics</h3>
-
-        <p>
-          You should also improve the aesthetics of your application, worth up
-          to 10 points. You are required to do this to earn full credit, and you
-          can earn full credit on the assignment even without implementing
-          additional functionality. We’ll expect really exceptional work,
-          though, if you want to earn all 10 points for aesthetics.
-        </p>
-
-        <p>
-          As in prior assignments, we tend to be most impressed when you
-          <strong>stick to a consistent theme</strong>, and it should be more
-          ambitious than simply “make the application look nice, clean, and
-          modern.” We know what it looks like when you got an LLM to design your
-          application for you, and these submissions don’t stand out. Do
-          something creative!
-        </p>
-
-        <p>
-          <strong
-            >The maximum score you can earn on this assignment is 40/40</strong
-          >. You can earn up to 10 points for improved aesthetics, and up to 6
-          points for extra features, but you cannot earn more than 40 points
-          total. You’re encouraged to put in some extra work so that you’ll have
-          more opportunities to earn these final 10 points!
-        </p>
-
-        <h3>Custom libraries</h3>
-
-        <p>
-          You can install custom packages (like component libraries and utility
-          libraries) to this project with npm. If you do, make sure to include
-          <code>package.json</code> <strong>and</strong>
-          <code>package-lock.json</code>, which should be updated automatically
-          when you install new libraries, in your submission zip file. These
-          will not be included automatically, since they reside outside of the
-          <code>code/</code> folder; you’ll need to copy them in manually.
-        </p>
-
-        <p>
-          If you don’t include these files, the autograder will fail to build
-          your project, and the TAs won’t be able to grade it!
-          <strong
-            >Make sure to check that the autograder uploads a working version of
-            your application</strong
-          >, even if you don’t install any custom libraries.
-        </p>
+        </ol>
       </section>
     </main>
   </body>

@@ -1,4 +1,4 @@
-# Programming Assignment 3: Building with React
+# Programming Assignment 4: Speedy smarts
 
 Hello friend! This is a programming assignment for CS 160/260A.
 
@@ -30,11 +30,11 @@ Node.js is also used to run the assignment's test cases using the Playwright lib
 
 This repository contains a `package.json` file, which is the standard way to tell Node.js some information about the program, including what libraries are needed to run the server code.
 
-Make sure you are inside the repository directory (`programming-assignment-3`).
+Make sure you are inside the repository directory (`programming-assignment-4`).
 Run the `install` command in `npm`, Node's default package manager:
 
 ```bash
-cd <repository location>/programming-assignment-3
+cd <repository location>/programming-assignment-4
 npm install
 ```
 
@@ -47,7 +47,7 @@ This will read `package.json`, then look to the [NPM package repository](https:/
 Run the server on your computer with <code>npm start</code>:
 
 ```bash
-cd <repository location>/programming-assignment-3
+cd <repository location>/programming-assignment-4
 npm start
 ```
 
@@ -59,4 +59,4 @@ In this project, we have already created a Vite application for you; this will m
 Vite also includes live-reloading, so that you don’t need to refresh the page manually when you make a change.
 
 We have configured `npm start` to run the Vite development server in addition to hosting the static specification document.
-In a personal project, you would instead generally open a terminal into the directory that has `vite.config.js` (in this case, that's the `code` directory) and run `npm run dev` from there; in this project, you’ll instead run `npm start` from the outer `programming-assignment-3` directory.
+In a personal project, you would instead generally open a terminal into the directory that has `vite.config.js` (in this case, that's the `code` directory) and run `npm run dev` from there; in this project, you’ll instead run `npm start` from the outer `programming-assignment-4` directory.
